@@ -1,28 +1,42 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;0,9..40,1000;1,9..40,100;1,9..40,200;1,9..40,300;1,9..40,400;1,9..40,500;1,9..40,600;1,9..40,700;1,9..40,800;1,9..40,900;1,9..40,1000&display=swap");
 
-body{
-    font-family: 'DM Sans', sans-serif;
+body {
+  font-family: "DM Sans", sans-serif;
 }
-.gradient-bg{
-    background: linear-gradient(0deg, #00AABC -25%, #DDECEE 58.29%);
-    width: 100%;
-    overflow-x: hidden;
+.gradient-bg {
+  background: linear-gradient(0deg, #00aabc -25%, #ddecee 58.29%);
+  width: 100%;
+  overflow-x: hidden;
 }
-.gradient-btn{
-    background: linear-gradient(270deg, #00AABC 32.26%, #C5EFF3 107.54%);
+.gradient-btn {
+  background: linear-gradient(270deg, #00aabc 32.26%, #c5eff3 107.54%);
 }
-.onboard{
-    /* overflow-y: hidden; */
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+.onboard {
+  /* overflow-y: hidden; */
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 .register-input {
-    border: 2px solid #00000059;
-    padding: 10px 15px;
-    /* width: 90%;
+  border: 2px solid #00000059;
+  padding: 10px 15px;
+  /* width: 90%;
     margin-top: 2.5%; */
-    /* margin-left: 5%; */
-    /* font-size: 14px; */
-    /* margin-left: 15px; */
-  }
+  /* margin-left: 5%; */
+  /* font-size: 14px; */
+  /* margin-left: 15px; */
+}
+
+.prompt-banner {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+.prompt-banner::-webkit-scrollbar {
+  display: none;
+}
+.basket {
+  overflow-x: hidden;
+}

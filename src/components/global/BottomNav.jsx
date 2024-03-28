@@ -42,7 +42,7 @@ export default function BottomNav() {
       <br />
       <br />
       <br />
-      <div className="bottom-navigation gradient-btn rounded-t-[30px] rounded flex justify-between items-center py-[5%] px-[10%] w-[100%] absolute bottom-0 left-0 text-[13px] font-medium text-white">
+      <div className=" bottom-navigation gradient-btn rounded-t-[30px] rounded flex justify-between items-center py-[5%] px-[10%] w-[100%] fixed bottom-0 left-0 text-[13px] font-medium text-white">
         {homeBool ? (
           <Link to="/home">
             <div className="flex justify-center items-center">

@@ -12,6 +12,9 @@ import ResetEmail from "./pages/forms/ResetEmail";
 import Pin from "./pages/forms/Pin";
 import Home from "./pages/home/Home";
 import Profile from "./pages/profile/Profile";
+import Services from "./pages/services/Services";
+import ServiceInfo from "./components/services/ServiceInfo";
+import Store from "./pages/store/Store";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +48,18 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <Profile />,
+  },
+  {
+    path: "/services",
+    element: <Services />,
+  },
+  {
+    path: "/service-info",
+    element: <ServiceInfo />,
+  },
+  {
+    path: "/store",
+    element: <Store />,
   },
 ]);
 

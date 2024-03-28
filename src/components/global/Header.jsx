@@ -13,12 +13,14 @@ export default function Header(props) {
   return (
     <div>
       <div
-        className="header flex text-[20px] font-bold text-[#212828] shadow-md p-[5%]"
+        className="header fixed top-0 bg-white w-[100%] flex text-[20px] font-bold text-[#212828] shadow-md p-[5%] z-10"
         onClick={handleGoBack}
       >
         <FontAwesomeIcon icon={faChevronLeft} className="mt-[1.5%]" />
         <p className="ml-[3%]">{props.header}</p>
       </div>
+      <br />
+      <br />
     </div>
   );
 }
