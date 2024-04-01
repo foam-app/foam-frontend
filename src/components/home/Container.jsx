@@ -24,9 +24,8 @@ export default function Container() {
   return (
     <>
       <div className="relative">
+        <NavBar />
         <div className="p-[5%]">
-          <NavBar />
-          <br />
           <Button />
 
           <Slider slides={slides} />
