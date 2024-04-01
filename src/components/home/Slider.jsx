@@ -26,19 +26,19 @@ export default function Slider({ slides }) {
         <div className="slider-images">
           <div className="relative">
             <motion.div
-              key={slides[currentSlide].id}
-              initial={{
-                //opacity: 0.3,
-                x: 100,
-              }}
-              animate={{
-                //opacity: 1,
-                x: 0,
-              }}
-              exit={{
-                //opacity: 0,
-                x: -300,
-              }}
+              // key={slides[currentSlide].id}
+              // initial={{
+              //   //opacity: 0.3,
+              //   x: 100,
+              // }}
+              // animate={{
+              //   //opacity: 1,
+              //   x: 0,
+              // }}
+              // exit={{
+              //   //opacity: 0,
+              //   x: -300,
+              // }}
               transition={{ duration: 0.5 }}
               onAnimationComplete={() => setIsTransitioning(false)}
             >

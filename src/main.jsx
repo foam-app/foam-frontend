@@ -15,6 +15,9 @@ import Profile from "./pages/profile/Profile";
 import Services from "./pages/services/Services";
 import ServiceInfo from "./components/services/ServiceInfo";
 import Store from "./pages/store/Store";
+import AddressInfo from "./components/store/Address";
+import App from "./components/store/Payment";
+import Basket from "./pages/basket/Basket";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +63,18 @@ const router = createBrowserRouter([
   {
     path: "/store",
     element: <Store />,
+  },
+  {
+    path: "/pickup-address",
+    element: <AddressInfo />,
+  },
+  {
+    path: "/payment",
+    element: <App />,
+  },
+  {
+    path: "/basket",
+    element: <Basket />,
   },
 ]);
 

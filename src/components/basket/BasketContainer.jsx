@@ -1,29 +1,27 @@
 import React from "react";
-
 import Header from "../global/Header";
 import BottomNav from "../global/BottomNav";
-import Categories from "./Categories";
-import Button from "../home/Button";
 import { useNavigate } from "react-router-dom";
+import BasketContent from "./BasketContent";
 
-export default function StoreContainer() {
+export default function BasketContainer() {
   const navigate = useNavigate();
 
   const handleNavigate = () => {
-    navigate("/basket");
+    navigate("/pickup-address");
   };
 
   return (
     <div className="relative">
-      <Header header="Add to Basket" />
+      <Header header="Basket" />
 
       <div className="p-[5%] basket">
-        <Categories />
+        <BasketContent />
         <button
-          className="w-[100%] rounded-[8px] py-[12px] px-[32px] bg-[#001C1F] text-white text-[16px] font-bold"
+          className="w-[100%] rounded-[8px] py-[12px] px-[32px] bg-[#001C1F] text-white text-[18px] font-bold"
           onClick={handleNavigate}
         >
-          <p>Go To Basket</p>
+          <p>Proceed</p>
         </button>
       </div>
 
