@@ -11,6 +11,8 @@ import google from "../../assets/apple.svg";
 
 import axios from "../../api/url";
 import { success, failure } from "../../classes/notify";
+
+import loader from "../../assets/loader.gif";
 const SIGNUP_URL = `/api/auth/register`;
 
 export default function SignUp() {
@@ -19,6 +21,8 @@ export default function SignUp() {
   const handleGoBack = () => {
     history(-1);
   };
+
+  const [loading, setLoading] = useState(false);
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -35,6 +39,7 @@ export default function SignUp() {
 
   const handleSubmit = async (e) => {
     // history("/signup-address");
+    setLoading(true);
 
     e.preventDefault();
 
@@ -59,12 +64,14 @@ export default function SignUp() {
       });
 
       console.log(response.data);
+      setLoading(false);
       const message = response.data.message;
       // history("/signup-address");
       success(message);
       history("/login");
     } catch (err) {
-      const message = err.response.data.message;
+      setLoading(false);
+      const message = err.response.data.error;
       failure(message);
     }
   };
@@ -73,7 +80,7 @@ export default function SignUp() {
     <>
       <div className="mx-[3%]">
         <div
-          className="header flex justify-between items-center mt-[20px] text-[12px]"
+          className="header flex justify-between items-center mt-[20px] text-[15px]"
           onClick={handleGoBack}
         >
           <FontAwesomeIcon icon={faChevronLeft} />
@@ -84,16 +91,16 @@ export default function SignUp() {
           <p className="text-[24px] font-medium">Let’s set up your account</p>
 
           <div className="input-boxes">
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center w-[100%]">
               <Input
-                classname="bg-transparent py-[10%] px-[10px]"
+                classname="bg-transparent py-[10%] px-[10px] w-[55%]"
                 placeholder="First Name"
                 ref={firstRef}
                 onchange={(e) => setFirstName(e.target.value)}
               />
               {/* <div className=""></div> */}
               <Input
-                classname="bg-transparent py-[10%] px-[10px]"
+                classname="bg-transparent py-[10%] px-[10px] 5-[54%]"
                 placeholder="Last Name"
                 ref={lastRef}
                 onchange={(e) => setLastName(e.target.value)}
@@ -130,9 +137,16 @@ export default function SignUp() {
           </div>
 
           <div className="my-auto">
-            <div className="" onClick={handleSubmit}>
-              <GradientBtn name="Next" />
-            </div>
+            {loading ? (
+              <div className="flex justify-center items-center h-[53px] text-[16px] rounded-[8px] text-center gradient-btn text-white w-[100%]">
+                <img src={loader} alt="" className="w-[40px] h-[20px]" />
+              </div>
+            ) : (
+              <div className="" onClick={handleSubmit}>
+                <GradientBtn name="Next" />
+              </div>
+            )}
+
             <p className="my-[3.5%] text-center uppercase">or</p>
             <div className="text-center register-input rounded-md">
               <img src={google} className=" side-bar-text inline mr-3" />

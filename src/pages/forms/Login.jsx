@@ -11,6 +11,8 @@ import google from "../../assets/apple.svg";
 import axios from "../../api/url";
 import { TokenContext } from "../../context/TokenProvider";
 import { success, failure } from "../../classes/notify";
+
+import loader from "../../assets/loader.gif";
 const LOGIN_URL = `/api/auth/login`;
 
 export default function Login() {
@@ -26,7 +28,11 @@ export default function Login() {
 
   const emailRef = useRef();
   const passRef = useRef();
+
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = async (event) => {
+    setLoading(true);
     event.preventDefault();
 
     try {
@@ -46,6 +52,7 @@ export default function Login() {
       );
 
       console.log(response);
+      setLoading(false);
       const token = response.data.token;
       initToken(token);
       setToken(token);
@@ -53,10 +60,9 @@ export default function Login() {
       const message = response.data.message;
       success(message);
       history("/home");
-      // history("/signup-address");
     } catch (error) {
-      const message = error.response.error;
-      // console.log(error.response.data);
+      setLoading(false);
+      const message = error.response.data.error;
       failure(message);
     }
   };
@@ -65,7 +71,7 @@ export default function Login() {
     <>
       <div className="mx-[3%] ">
         <div
-          className="header flex justify-between items-center mt-[20px] text-[12px]"
+          className="header flex justify-between items-center mt-[20px] text-[15px]"
           onClick={handleGoBack}
         >
           <FontAwesomeIcon icon={faChevronLeft} />
@@ -98,9 +104,15 @@ export default function Login() {
           </div>
 
           <div className="w-[100%] my-auto">
-            <div className="" onClick={handleSubmit}>
-              <GradientBtn name="Log In" />
-            </div>
+            {loading ? (
+              <div className="flex justify-center items-center h-[53px] text-[16px] rounded-[8px] text-center gradient-btn text-white w-[100%]">
+                <img src={loader} alt="" className="w-[40px] h-[20px]" />
+              </div>
+            ) : (
+              <div className="" onClick={handleSubmit}>
+                <GradientBtn name="Log In" />
+              </div>
+            )}
             <p className="my-[3.5%] text-center uppercase">or</p>
             <div className="text-center register-input rounded-md">
               <img src={google} className=" side-bar-text inline mr-3" />
