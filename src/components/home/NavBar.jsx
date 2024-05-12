@@ -1,27 +1,60 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faX, faSignOut } from "@fortawesome/free-solid-svg-icons";
 import { faBell } from "@fortawesome/free-regular-svg-icons";
+
+import { TokenContext } from "../../context/TokenProvider";
 
 import user from "../../assets/user.jfif";
 import nav from "../../assets/side-icons.png";
 import bell from "../../assets/bell.png";
 import SideBar from "../global/SideBar";
 
+import axios from "../../api/url";
+import { ProfileContext } from "../../context/ProfileContext";
+const GET_USER = `/api/user/profile`;
+
 export default function NavBar() {
+  const { token } = useContext(TokenContext);
   const [toggle, setToggle] = useState(false);
+
+  const { setUser } = useContext(ProfileContext);
+
+  const [name, setName] = useState("There");
 
   const handleSideBar = () => {
     setToggle(!toggle);
   };
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const response = await axios.get(GET_USER, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          withCredentials: true,
+        });
+        const user = response.data.user;
+        setName(user.firstName);
+        setUser(user);
+      } catch (err) {
+        console.log(err.response);
+      }
+    };
+
+    getUser();
+  }, []);
 
   return (
     <>
       <div className="relative flex justify-between items-center my-[3.5%] p-[5%]">
         <div className="flex justify-center items-center">
           <img src={user} alt="" className="w-[50px] h-[50px] rounded-full" />
-          <p className="text-[18px] ml-[10px] font-medium">Hey, Jessica</p>
+          <p className="text-[18px] ml-[10px] font-medium">{`Hey, ${name}`}</p>
         </div>
         <div className="flex text-[21px] font-light">
           {/* <FontAwesomeIcon icon={faBell} className="mx-[1.5%]" /> */}
@@ -41,7 +74,7 @@ export default function NavBar() {
               <div className="">
                 <div className="pl-[5%] pt-[12%]">
                   <div className="flex justify-between items-center">
-                    <p className="text-[24px] font-medium">Hello Jessica</p>
+                    <p className="text-[24px] font-medium">{`Hey, ${name}`}</p>
                     <FontAwesomeIcon
                       icon={faX}
                       className="w-[20px] h-[20px] pr-[5%]"

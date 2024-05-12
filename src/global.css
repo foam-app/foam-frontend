@@ -40,3 +40,40 @@ body {
 .basket {
   overflow-x: hidden;
 }
+.Toastify__toast-body {
+  font-family: "DM Sans", sans-serif; /* Customize the font family */
+  width: 100%; /* Customize the width */
+  font-size: 15px;
+  height: 50px;
+}
+.Pending {
+  border: 2px solid #dfbb00;
+  color: #dfbb00;
+  padding: 6px 20px;
+  width: 123px;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.Declined {
+  border: 2px solid #a60001;
+  color: #a60001;
+  padding: 6px 20px;
+  width: 123px;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+}
+.Complete {
+  border: 2px solid #0da000;
+  color: #0da000;
+  padding: 6px 20px;
+  width: 123px;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+}

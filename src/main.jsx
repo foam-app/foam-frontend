@@ -3,6 +3,9 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import "./global.css";
 
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./pages/Root";
 import SignUp from "./pages/forms/SignUp";
@@ -18,6 +21,10 @@ import Store from "./pages/store/Store";
 import AddressInfo from "./components/store/Address";
 import App from "./components/store/Payment";
 import Basket from "./pages/basket/Basket";
+
+import { TokenProvider } from "./context/TokenProvider";
+import { ProfileProvider } from "./context/ProfileContext";
+import History from "./pages/history/History";
 
 const router = createBrowserRouter([
   {
@@ -76,10 +83,19 @@ const router = createBrowserRouter([
     path: "/basket",
     element: <Basket />,
   },
+  {
+    path: "/history",
+    element: <History />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ToastContainer></ToastContainer>
+    <TokenProvider>
+      <ProfileProvider>
+        <RouterProvider router={router} />
+      </ProfileProvider>
+    </TokenProvider>
   </React.StrictMode>
 );

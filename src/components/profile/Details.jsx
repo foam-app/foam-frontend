@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Input from "../forms/Input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 
-import user from "../../assets/user.jfif";
+import userProfile from "../../assets/user.jfif";
 import camera from "../../assets/camera.svg";
+import { ProfileContext } from "../../context/ProfileContext";
 
 export default function Details() {
+  const { user } = useContext(ProfileContext);
+  console.log(user);
+
   return (
     <div>
       <div className="rounded-full relative my-[3%]">
-        <img src={user} alt="" className="w-[70px] h-[70px] rounded-full" />
+        <img
+          src={userProfile}
+          alt=""
+          className="w-[70px] h-[70px] rounded-full"
+        />
 
         <div className="absolute bg-[#00AABC40] w-[69px] rounded-b-full flex justify-center items-center h-[30px] top-[57%]">
           <img src={camera} alt="" />
@@ -22,7 +30,7 @@ export default function Details() {
             <p className="capitalize">first name</p>
             <Input
               classname="bg-transparent py-[10%] px-[10px]"
-              placeholder="Jessica"
+              placeholder={`${user.firstName}`}
             />
           </div>
           {/* <div className=""></div> */}
@@ -30,7 +38,7 @@ export default function Details() {
             <p className="capitalize">last name</p>
             <Input
               classname="bg-transparent py-[10%] px-[10px]"
-              placeholder="Okem"
+              placeholder={`${user.lastName}`}
             />
           </div>
         </div>
@@ -38,13 +46,13 @@ export default function Details() {
         <p className="capitalize mt-[4px]">email</p>
         <Input
           classname="bg-transparent w-[100%] py-[5%] pl-[10px]"
-          placeholder="jessica@example.com"
+          placeholder={`${user.email}`}
         />
 
         <p className="capitalize">phone number</p>
         <Input
           classname="bg-transparent w-[100%] py-[5%] pl-[5px]"
-          placeholder="03000000000"
+          placeholder={`${user.phone}`}
         />
         <div className="my-[4%]"></div>
 

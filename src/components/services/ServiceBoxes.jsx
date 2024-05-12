@@ -23,13 +23,13 @@ export default function ServiceBoxes() {
     },
     {
       id: 4,
-      image: "../../../src/assets/service1.png",
+      image: "../../../src/assets/service4.png",
       title: "Stain Removal",
       description: "Clothes, towels, lines etc",
     },
     {
       id: 5,
-      image: "../../../src/assets/service2.png",
+      image: "../../../src/assets/service5.png",
       title: "Other Services",
       description: "Clothes, towels, lines etc",
     },

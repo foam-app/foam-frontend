@@ -1,5 +1,5 @@
 import homeActive from "../../assets/hActive.svg";
-import historyActive from "../../assets/history.svg";
+import historyActive from "../../assets/hiActive.svg";
 import basketActive from "../../assets/bActive.svg";
 import userActive from "../../assets/pActive.svg";
 

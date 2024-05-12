@@ -10,7 +10,8 @@ import apple from "../../assets/google-svg.svg";
 import google from "../../assets/apple.svg";
 
 import axios from "../../api/url";
-const SIGNUP_URL = `/auth/register`;
+import { success, failure } from "../../classes/notify";
+const SIGNUP_URL = `/api/auth/register`;
 
 export default function SignUp() {
   const history = useNavigate();
@@ -33,7 +34,8 @@ export default function SignUp() {
   const passRef = useRef();
 
   const handleSubmit = async (e) => {
-    history("/signup-address");
+    // history("/signup-address");
+
     e.preventDefault();
 
     const data = {
@@ -57,9 +59,13 @@ export default function SignUp() {
       });
 
       console.log(response.data);
-      history("/signup-address");
+      const message = response.data.message;
+      // history("/signup-address");
+      success(message);
+      history("/login");
     } catch (err) {
-      console.log(err);
+      const message = err.response.data.message;
+      failure(message);
     }
   };
 

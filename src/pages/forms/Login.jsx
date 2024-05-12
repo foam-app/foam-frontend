@@ -1,5 +1,5 @@
 import { faChevronLeft, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import GradientBtn from "../../components/global/GradientBtn";
 import Input from "../../components/forms/Input";
@@ -9,9 +9,12 @@ import apple from "../../assets/google-svg.svg";
 import google from "../../assets/apple.svg";
 
 import axios from "../../api/url";
-const LOGIN_URL = `/auth/login`;
+import { TokenContext } from "../../context/TokenProvider";
+import { success, failure } from "../../classes/notify";
+const LOGIN_URL = `/api/auth/login`;
 
 export default function Login() {
+  const { setToken, initToken } = useContext(TokenContext);
   const history = useNavigate();
 
   const handleGoBack = () => {
@@ -43,9 +46,18 @@ export default function Login() {
       );
 
       console.log(response);
-      history("/");
+      const token = response.data.token;
+      initToken(token);
+      setToken(token);
+
+      const message = response.data.message;
+      success(message);
+      history("/home");
+      // history("/signup-address");
     } catch (error) {
-      console.log(error);
+      const message = error.response.error;
+      // console.log(error.response.data);
+      failure(message);
     }
   };
 
@@ -85,7 +97,7 @@ export default function Login() {
             </p>
           </div>
 
-          <div className=" w-[100%] my-auto">
+          <div className="w-[100%] my-auto">
             <div className="" onClick={handleSubmit}>
               <GradientBtn name="Log In" />
             </div>
