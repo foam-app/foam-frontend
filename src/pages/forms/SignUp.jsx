@@ -22,6 +22,8 @@ export default function SignUp() {
     history(-1);
   };
 
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
   const [loading, setLoading] = useState(false);
 
   const [firstName, setFirstName] = useState("");
@@ -121,19 +123,45 @@ export default function SignUp() {
               onchange={(e) => setEmail(e.target.value)}
             />
             <div className="my-[4%]"></div>
-            <Input
-              classname="bg-transparent w-[100%] py-[5%] pl-[10px]"
-              placeholder="Create Password"
-              icon={faEyeSlash}
-              ref={passRef}
-              onchange={(e) => setPassword(e.target.value)}
-            />
+            <div className="mr-[2px] flex bg-[#E4E4E4] text-[14px] my-[3%] text-[#000000CC] rounded-[10px]">
+              <input
+                className="bg-transparent w-[100%] py-[5%] pl-[10px]"
+                placeholder="Create Password"
+                ref={passRef}
+                onchange={(e) => setPassword(e.target.value)}
+                type={isPasswordVisible ? "text" : "password"}
+              />
+
+              <div
+                className="flex justify-center items-center pt-[%] pr-[5%]"
+                aria-label={
+                  isPasswordVisible ? "Hide password" : "Show password"
+                }
+                onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+              >
+                <FontAwesomeIcon icon={faEyeSlash} className="" />
+              </div>
+            </div>
             <div className="my-[4%]"></div>
-            <Input
-              classname="bg-transparent w-[100%] py-[5%] pl-[10px]"
-              placeholder="Repeat Password"
-              icon={faEyeSlash}
-            />
+            <div className="mr-[2px] flex bg-[#E4E4E4] text-[14px] my-[3%] text-[#000000CC] rounded-[10px]">
+              <input
+                className="bg-transparent w-[100%] py-[5%] pl-[10px]"
+                placeholder="Repeat Password"
+                ref={passRef}
+                onchange={(e) => setPassword(e.target.value)}
+                type={isPasswordVisible ? "text" : "password"}
+              />
+
+              <div
+                className="flex justify-center items-center pt-[%] pr-[5%]"
+                aria-label={
+                  isPasswordVisible ? "Hide password" : "Show password"
+                }
+                onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+              >
+                <FontAwesomeIcon icon={faEyeSlash} className="" />
+              </div>
+            </div>
           </div>
 
           <div className="my-auto">

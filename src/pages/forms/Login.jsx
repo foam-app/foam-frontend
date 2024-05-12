@@ -31,6 +31,8 @@ export default function Login() {
 
   const [loading, setLoading] = useState(false);
 
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
   const handleSubmit = async (event) => {
     setLoading(true);
     event.preventDefault();
@@ -89,13 +91,27 @@ export default function Login() {
               onchange={(e) => setEmail(e.target.value)}
             />
             <div className="my-[4%]"></div>
-            <Input
-              classname="bg-transparent w-[100%] py-[5%] pl-[10px]"
-              placeholder="Password"
-              icon={faEyeSlash}
-              ref={passRef}
-              onchange={(e) => setPassword(e.target.value)}
-            />
+
+            <div className="mr-[2px] flex bg-[#E4E4E4] text-[14px] my-[3%] text-[#000000CC] rounded-[10px]">
+              <input
+                className="bg-transparent w-[100%] py-[5%] pl-[10px]"
+                placeholder="Password"
+                ref={passRef}
+                onchange={(e) => setPassword(e.target.value)}
+                type={isPasswordVisible ? "text" : "password"}
+              />
+
+              <div
+                className="flex justify-center items-center pt-[%] pr-[5%]"
+                aria-label={
+                  isPasswordVisible ? "Hide password" : "Show password"
+                }
+                onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+              >
+                <FontAwesomeIcon icon={faEyeSlash} className="" />
+              </div>
+            </div>
+
             <div className="my-[4%]"></div>
 
             <p className="flex justify-end items-end text-[#00AABC] text-[14px]">
