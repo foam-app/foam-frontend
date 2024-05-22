@@ -22,8 +22,6 @@ export default function SignUp() {
     history(-1);
   };
 
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-
   const [loading, setLoading] = useState(false);
 
   const [firstName, setFirstName] = useState("");
@@ -37,7 +35,7 @@ export default function SignUp() {
   const lastRef = useRef();
   const emailRef = useRef();
   const phoneRef = useRef();
-  const passRef = useRef();
+  const passwordRef = useRef();
 
   const handleSubmit = async (e) => {
     // history("/signup-address");
@@ -78,6 +76,15 @@ export default function SignUp() {
     }
   };
 
+  const [isPasswordVisible, setIsPasswordVisible] = useState("password");
+
+  const togglePassword = () => {
+    if (isPasswordVisible === "password") {
+      setIsPasswordVisible("text");
+    } else if (isPasswordVisible === "text") {
+      setIsPasswordVisible("password");
+    }
+  };
   return (
     <>
       <div className="mx-[3%]">
@@ -95,6 +102,7 @@ export default function SignUp() {
           <div className="input-boxes">
             <div className="flex justify-between items-center w-[100%]">
               <Input
+                type="text"
                 classname="bg-transparent py-[10%] px-[10px] w-[55%]"
                 placeholder="First Name"
                 ref={firstRef}
@@ -102,6 +110,7 @@ export default function SignUp() {
               />
               {/* <div className=""></div> */}
               <Input
+                type="text"
                 classname="bg-transparent py-[10%] px-[10px] 5-[54%]"
                 placeholder="Last Name"
                 ref={lastRef}
@@ -110,6 +119,7 @@ export default function SignUp() {
             </div>
 
             <Input
+              type="text"
               classname="bg-transparent w-[100%] py-[5%] pl-[5px]"
               placeholder="Phone Number"
               ref={phoneRef}
@@ -117,14 +127,37 @@ export default function SignUp() {
             />
             <div className="my-[4%]"></div>
             <Input
+              type="text"
               classname="bg-transparent w-[100%] py-[5%] pl-[10px]"
               placeholder="Email Address"
               ref={emailRef}
               onchange={(e) => setEmail(e.target.value)}
             />
+
             <div className="my-[4%]"></div>
+
+            <div className="mr-[2px] flex justify-between items-center bg-[#E4E4E4] text-[14px] my-[3%] text-[#000000CC] rounded-[10px]">
+              <Input
+                type={isPasswordVisible}
+                classname="bg-transparent w-[100%] py-[5%] pl-[10px]"
+                placeholder="Create Password"
+                ref={passwordRef}
+                onchange={(e) => setPassword(e.target.value)}
+              />
+
+              <div
+                className="flex justify-between items-center pt-[%] pr-[5%]"
+                onClick={togglePassword}
+              >
+                <FontAwesomeIcon icon={faEyeSlash} className="" />
+              </div>
+            </div>
+
+            {/* <div className="my-[4%]"></div>
             <div className="mr-[2px] flex bg-[#E4E4E4] text-[14px] my-[3%] text-[#000000CC] rounded-[10px]">
               <input
+                id="password"
+                aria-label="Password"
                 className="bg-transparent w-[100%] py-[5%] pl-[10px]"
                 placeholder="Create Password"
                 ref={passRef}
@@ -147,8 +180,8 @@ export default function SignUp() {
               <input
                 className="bg-transparent w-[100%] py-[5%] pl-[10px]"
                 placeholder="Repeat Password"
-                ref={passRef}
-                onchange={(e) => setPassword(e.target.value)}
+                // ref={passRef}
+                // onchange={(e) => setPassword(e.target.value)}
                 type={isPasswordVisible ? "text" : "password"}
               />
 
@@ -161,7 +194,7 @@ export default function SignUp() {
               >
                 <FontAwesomeIcon icon={faEyeSlash} className="" />
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="my-auto">

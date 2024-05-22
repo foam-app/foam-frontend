@@ -31,7 +31,15 @@ export default function Login() {
 
   const [loading, setLoading] = useState(false);
 
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState("password");
+
+  const togglePassword = () => {
+    if (isPasswordVisible === "password") {
+      setIsPasswordVisible("text");
+    } else if (isPasswordVisible === "text") {
+      setIsPasswordVisible("password");
+    }
+  };
 
   const handleSubmit = async (event) => {
     setLoading(true);
@@ -85,6 +93,7 @@ export default function Login() {
 
           <div className="mt-[5%] input-boxes">
             <Input
+              type="text"
               classname="bg-transparent w-[100%] py-[5%] pl-[5px]"
               placeholder="Email or Phone Number"
               ref={emailRef}
@@ -92,21 +101,18 @@ export default function Login() {
             />
             <div className="my-[4%]"></div>
 
-            <div className="mr-[2px] flex bg-[#E4E4E4] text-[14px] my-[3%] text-[#000000CC] rounded-[10px]">
-              <input
-                className="bg-transparent w-[100%] py-[5%] pl-[10px]"
-                placeholder="Password"
+            <div className="mr-[2px] flex justify-between items-center bg-[#E4E4E4] text-[14px] my-[3%] text-[#000000CC] rounded-[10px]">
+              <Input
+                type={isPasswordVisible}
+                classname="bg-transparent w-[100%] py-[5%] pl-[10px]"
+                placeholder="Enter Password"
                 ref={passRef}
                 onchange={(e) => setPassword(e.target.value)}
-                type={isPasswordVisible ? "text" : "password"}
               />
 
               <div
-                className="flex justify-center items-center pt-[%] pr-[5%]"
-                aria-label={
-                  isPasswordVisible ? "Hide password" : "Show password"
-                }
-                onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+                className="flex justify-between items-center pt-[%] pr-[5%]"
+                onClick={togglePassword}
               >
                 <FontAwesomeIcon icon={faEyeSlash} className="" />
               </div>

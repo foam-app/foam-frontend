@@ -15,14 +15,38 @@ import {
   InputOTPSeparator,
   InputOTPSlot,
 } from "../../../@/components/ui/input-otp";
+import { useState } from "react";
+import { useRef } from "react";
+import { OTPContext } from "../../context/OTPContext";
+import { useContext } from "react";
+
+import loader from "../../assets/loader.gif";
 
 export default function Pin() {
+  const { setOTP } = useContext(OTPContext);
+
   const history = useNavigate();
   const handleGoBack = () => {
     history(-1);
   };
 
   const slots = 4;
+
+  const [pin, setPin] = useState("");
+  const pinRef = useRef();
+
+  const [loading, setLoading] = useState(false);
+
+  const handlePinChange = (value) => {
+    setPin(value); // Update the pin state with the new value
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setOTP(pin);
+    history("/change-password");
+  };
   return (
     <>
       <div className="mx-[3%] ">
@@ -51,7 +75,8 @@ export default function Pin() {
               >
                 <PinInput
                   length={4}
-                  onChange={(value, index) => {}}
+                  onChange={handlePinChange}
+                  ref={pinRef}
                   type="numeric"
                   inputMode="number"
                   style={{ padding: "10px" }}
@@ -98,7 +123,15 @@ export default function Pin() {
           </div>
 
           <div className=" w-[100%] my-auto">
-            <GradientBtn name="Confirm" link="/home" />
+            {loading ? (
+              <div className="flex justify-center items-center h-[53px] text-[16px] rounded-[8px] text-center gradient-btn text-white w-[100%]">
+                <img src={loader} alt="" className="w-[40px] h-[20px]" />
+              </div>
+            ) : (
+              <div className="" onClick={handleSubmit}>
+                <GradientBtn name="Confirm" />
+              </div>
+            )}
             <p className="text-[#212828] text-center mt-3">
               Don’t Have An Account?{" "}
               <span className="text-[#00AABC]">

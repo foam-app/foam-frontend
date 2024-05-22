@@ -25,6 +25,7 @@ import Basket from "./pages/basket/Basket";
 import { TokenProvider } from "./context/TokenProvider";
 import { ProfileProvider } from "./context/ProfileContext";
 import History from "./pages/history/History";
+import ChangePassword from "./pages/forms/ChangePassword";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
   {
     path: "/pin",
     element: <Pin />,
+  },
+  {
+    path: "/change-password",
+    element: <ChangePassword />,
   },
   {
     path: "/home",
