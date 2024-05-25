@@ -62,7 +62,7 @@ export default function Slideshow({ slides }) {
 
       <div className="">
         <div className="onboard">
-          <div className="flex justify-center items-center relative mb-[59.5%]">
+          <div className="flex justify-center items-center relative mb-[49.5%]">
             <motion.div
               key={slides[currentSlide].id}
               initial={{
@@ -77,7 +77,7 @@ export default function Slideshow({ slides }) {
                 //opacity: 0,
                 x: -300,
               }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.2 }}
               onAnimationComplete={() => setIsTransitioning(false)}
             >
               <img

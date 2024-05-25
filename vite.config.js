@@ -10,3 +10,16 @@ export default defineConfig({
   },
   plugins: [react()],
 });
+
+// vite.config.js example
+// export default defineConfig({
+//   plugins: [react()],
+//   server: {
+//     proxy: {
+//       "/api": {
+//         target: "YOUR_API_PUBLIC_URL", // Use your actual API URL here
+//         changeOrigin: true,
+//       },
+//     },
+//   },
+// });

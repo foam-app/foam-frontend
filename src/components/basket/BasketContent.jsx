@@ -1,5 +1,6 @@
 import React from "react";
 import StoreItem from "../store/StoreItem";
+import { useContext } from "react";
 
 export default function () {
   const items = [
@@ -31,6 +32,7 @@ export default function () {
       price: "N500",
     },
   ];
+
   return (
     <>
       <div className="">

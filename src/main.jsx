@@ -26,6 +26,8 @@ import { TokenProvider } from "./context/TokenProvider";
 import { ProfileProvider } from "./context/ProfileContext";
 import History from "./pages/history/History";
 import ChangePassword from "./pages/forms/ChangePassword";
+import Cart from "./components/store/sampleCart";
+import { OTPProvider } from "./context/OTPContext";
 
 const router = createBrowserRouter([
   {
@@ -92,6 +94,10 @@ const router = createBrowserRouter([
     path: "/history",
     element: <History />,
   },
+  {
+    path: "/cart",
+    element: <Cart />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -99,7 +105,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <ToastContainer></ToastContainer>
     <TokenProvider>
       <ProfileProvider>
-        <RouterProvider router={router} />
+        <OTPProvider>
+          <RouterProvider router={router} />
+        </OTPProvider>
       </ProfileProvider>
     </TokenProvider>
   </React.StrictMode>

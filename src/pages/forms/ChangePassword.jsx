@@ -26,8 +26,6 @@ export default function ChangePassword() {
     history(-1);
   };
 
-  console.log(otp);
-
   const [loading, setLoading] = useState(false);
 
   const [password, setPassword] = useState("");

@@ -38,7 +38,9 @@ export default function Pin() {
   const [loading, setLoading] = useState(false);
 
   const handlePinChange = (value) => {
-    setPin(value); // Update the pin state with the new value
+    let input = ``;
+    input = input + value;
+    setPin(input);
   };
 
   const handleSubmit = (e) => {

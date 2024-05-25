@@ -2,7 +2,6 @@
 
 body {
   font-family: "DM Sans", sans-serif;
-  overflow-y: hidden;
 }
 .gradient-bg {
   background: linear-gradient(0deg, #00aabc -25%, #ddecee 58.29%);
@@ -80,4 +79,8 @@ body::-webkit-scrollbar {
   text-align: center;
   font-size: 16px;
   font-weight: 700;
+}
+
+.no-scroll {
+  overflow-y: hidden;
 }

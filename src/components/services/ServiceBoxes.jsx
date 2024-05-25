@@ -1,6 +1,11 @@
 import React from "react";
 import ServiceBoxItem from "./ServiceBoxItem";
 
+import axios from "../../api/url";
+import { useState, useEffect } from "react";
+import { failure, success } from "../../classes/notify";
+const GET_SERVICES = `api/services/`;
+
 export default function ServiceBoxes() {
   const services = [
     {
@@ -34,6 +39,27 @@ export default function ServiceBoxes() {
       description: "Clothes, towels, lines etc",
     },
   ];
+
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const getServices = async () => {
+      try {
+        const response = await axios.get(GET_SERVICES, {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          withCredentials: true,
+        });
+        setData(response.data.services);
+        // success(`${response.data.message}`);
+      } catch (err) {
+        // failure(`${err.response.data.error}`);
+      }
+    };
+
+    // getServices();
+  });
   return (
     <div>
       <div className="">

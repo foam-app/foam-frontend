@@ -1,5 +1,6 @@
 import React from "react";
 import StoreItem from "./StoreItem";
+import { useContext } from "react";
 
 export default function StoreCategories() {
   const items = [
@@ -44,6 +45,7 @@ export default function StoreCategories() {
             name={item.name}
             image={item.image}
             price={item.price}
+            id={item.id}
           />
         ))}
       </div>
