@@ -7,31 +7,31 @@ export default function StoreCategories() {
     {
       id: 1,
       name: "Shirt",
-      image: "../../../src/assets/shirt.png",
+      image: "/shirt.png",
       price: "N500",
     },
     {
       id: 2,
       name: "T-Shirt",
-      image: "../../../src/assets/tshirt.png",
+      image: "/tshirt.png",
       price: "N500",
     },
     {
       id: 3,
       name: "Polo",
-      image: "../../../src/assets/polo.png",
+      image: "/polo.png",
       price: "N500",
     },
     {
       id: 4,
       name: "Female Tops",
-      image: "../../../src/assets/female-tops.png",
+      image: "/female-tops.png",
       price: "N500",
     },
     {
       id: 5,
       name: "Singlet",
-      image: "../../../src/assets/singlet.png",
+      image: "/singlet.png",
       price: "N500",
     },
   ];

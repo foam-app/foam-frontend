@@ -10,15 +10,15 @@ export default function Container() {
   const slides = [
     {
       id: "1",
-      image: "../../../src/assets/home-slider.png",
+      image: "/home-slider.png",
     },
     {
       id: "2",
-      image: "../../../src/assets/home-slider.png",
+      image: "/home-slider.png",
     },
     {
       id: "3",
-      image: "../../../src/assets/home-slider.png",
+      image: "/home-slider.png",
     },
   ];
   return (

@@ -6,22 +6,22 @@ export default function Services() {
   const services = [
     {
       id: 1,
-      image: "../../../src/assets/wash.svg",
+      image: "/wash.svg",
       text: "Washing",
     },
     {
       id: 2,
-      image: "../../../src/assets/iron.svg",
+      image: "/iron.svg",
       text: "Ironing",
     },
     {
       id: 3,
-      image: "../../../src/assets/clean.svg",
+      image: "/clean.svg",
       text: "Dry Cleaning",
     },
     {
       id: 4,
-      image: "../../../src/assets/fold.svg",
+      image: "/fold.svg",
       text: "Folding",
     },
   ];
