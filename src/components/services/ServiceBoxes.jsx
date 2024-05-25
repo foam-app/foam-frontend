@@ -10,31 +10,31 @@ export default function ServiceBoxes() {
   const services = [
     {
       id: 1,
-      image: "../../../src/assets/service1.png",
+      image: "/service1.png",
       title: "Washing and Folding",
       description: "Clothes, towels, lines etc",
     },
     {
       id: 2,
-      image: "../../../src/assets/service2.png",
+      image: "/service2.png",
       title: "Washing and Ironing",
       description: "Clothes, towels, lines etc",
     },
     {
       id: 3,
-      image: "../../../src/assets/service3.png",
+      image: "/service3.png",
       title: "Dry Cleaning",
       description: "Clothes, towels, lines etc",
     },
     {
       id: 4,
-      image: "../../../src/assets/service4.png",
+      image: "/service4.png",
       title: "Stain Removal",
       description: "Clothes, towels, lines etc",
     },
     {
       id: 5,
-      image: "../../../src/assets/service5.png",
+      image: "/service5.png",
       title: "Other Services",
       description: "Clothes, towels, lines etc",
     },
