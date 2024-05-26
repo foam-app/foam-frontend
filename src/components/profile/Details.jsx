@@ -7,6 +7,8 @@ import userProfile from "../../assets/user.jfif";
 import camera from "../../assets/camera.svg";
 import { ProfileContext } from "../../context/ProfileContext";
 
+const EDIT_ADDRESS = `/api/user/address`;
+
 export default function Details() {
   const { user } = useContext(ProfileContext);
   console.log(user);
@@ -25,8 +27,8 @@ export default function Details() {
         </div>
       </div>
       <div className="input-boxes text-[#000000CC] text-[13.5px]">
-        <div className="flex justify-between items-center">
-          <div className="">
+        <div className="flex justify-between items-center w-[100%]">
+          <div className="w-[49.5%]">
             <p className="capitalize">first name</p>
             <Input
               classname="bg-transparent py-[10%] px-[10px]"
@@ -34,7 +36,7 @@ export default function Details() {
             />
           </div>
           {/* <div className=""></div> */}
-          <div className="">
+          <div className="w-[49.5%]">
             <p className="capitalize">last name</p>
             <Input
               classname="bg-transparent py-[10%] px-[10px]"
@@ -83,6 +85,7 @@ export default function Details() {
         <button className="rounded-[8px] w-[100%] py-[12px] px-[32px] bg-[#001C1F] text-white text-[16px] font-bold">
           <p>Change Password</p>
         </button>
+
         <button className="rounded-[8px] w-[100%] mt-[3%] py-[12px] px-[32px] bg-[#001C1F] text-white text-[16px] font-bold">
           <p>Delete Account</p>
         </button>

@@ -88,7 +88,7 @@ export default function Login() {
           {/* <p>step 1 of 2</p> */}
         </div>
 
-        <div className="mt-[12%] flex flex-col h-[100vh]">
+        <div className="mt-[5%]">
           <p className="text-[24px] font-medium">Log In</p>
 
           <div className="mt-[5%] input-boxes">
@@ -125,7 +125,7 @@ export default function Login() {
             </p>
           </div>
 
-          <div className="w-[100%] my-auto">
+          <div className="w-[100%] mt-[27%]">
             {loading ? (
               <div className="flex justify-center items-center h-[53px] text-[16px] rounded-[8px] text-center gradient-btn text-white w-[100%]">
                 <img src={loader} alt="" className="w-[40px] h-[20px]" />

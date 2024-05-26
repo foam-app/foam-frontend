@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Input(props) {
   return (
-    <div className="mr-[2px] flex bg-[#E4E4E4] text-[14px] my-[3%] text-[#000000CC] rounded-[10px]">
+    <div className="flex bg-[#E4E4E4] text-[16px] my-[3%] text-[#000000CC] rounded-[10px]">
       <input
         type={props.type}
         className={props.classname}

@@ -6,6 +6,8 @@ import Services from "./Services";
 import Products from "./Products";
 import BottomNav from "../global/BottomNav";
 
+import { usePreloadImages } from "../onboarding/Hero";
+
 export default function Container() {
   const slides = [
     {
@@ -21,6 +23,10 @@ export default function Container() {
       image: "/home-slider.png",
     },
   ];
+
+  const imagesToPreload = ["/home-slider.png"];
+
+  usePreloadImages(imagesToPreload);
   return (
     <>
       <div className="relative">

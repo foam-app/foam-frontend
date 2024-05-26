@@ -1,23 +1,57 @@
 import { faAdd, faMinus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useState, useContext, useReducer } from "react";
+
+import axios from "../../api/url";
+import { TokenContext } from "../../context/TokenProvider";
+const ADD_TO_CART = `/api/user/basket/`;
+
 export default function BasketItem(props) {
-  const [quantity, setQuantity] = useState(0);
+  const quantity = { quantity: 1 };
 
-  const addQuantity = () => {
-    const newQuantity = quantity + 1;
-    setQuantity(newQuantity);
-  };
-
-  const minusQuantity = () => {
-    if (quantity != 0) {
-      const newQuantity = quantity - 1;
-      setQuantity(newQuantity);
-    } else {
-      const newQuantity = 0;
-      setQuantity(newQuantity);
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case "add":
+        return { quantity: state.quantity + 1 };
+      case "minus":
+        if ({ quantity: state.quantity == 0 }) {
+          return { quantity: state.quantity };
+        } else {
+          return { quantity: state.quantity - 1 };
+        }
+      default:
+        return state;
     }
   };
+  const [added, setAdded] = useState(true);
+  const { token } = useContext(TokenContext);
+
+  const addToCart = async (id) => {
+    const categoryId = id;
+    const number = state.quantity;
+
+    const data = {
+      categoryId: 2,
+      quantity: 2,
+    };
+
+    setAdded(!added);
+    try {
+      const response = await axios.post(ADD_TO_CART, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        withCredentials: true,
+      });
+      console.log(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const [state, action] = useReducer(reducer, quantity);
   return (
     <div>
       <div className="my-[6.5%] w-[100%] flex justify-between items-center">
@@ -27,22 +61,24 @@ export default function BasketItem(props) {
           </div>
 
           <div className="text-left ml-5 text-[18px]">
-            <p>{props.name}</p>
-            <p className="font-bold">{props.price}</p>
+            <p className=" capitalize">{props.name}</p>
+            <p className="font-bold">N {props.price}</p>
           </div>
         </div>
 
         <div className="text-[18px] flex justify-between items-center">
           <button
             className="rounded-[180px] py-[10px] px-[16px] bg-[#001C1F] text-white"
-            onClick={minusQuantity}
+            onClick={() => action({ type: "minus" })}
+            // onClick={() => updateCart(props, "minus")}
           >
             <FontAwesomeIcon icon={faMinus} />
           </button>
-          <p className="text-[18px] mx-[5%]">{quantity}</p>
+          <p className="text-[18px] mx-[5%]">{props.quantity}</p>
           <button
             className="rounded-[180px] py-[10px] px-[16px] bg-[#001C1F] text-white"
-            onClick={addQuantity}
+            onClick={() => action({ type: "add" })}
+            // onClick={() => updateCart(props, "add")}
           >
             <FontAwesomeIcon icon={faAdd} />
           </button>

@@ -96,26 +96,30 @@ export default function SignUp() {
           <p>step 1 of 2</p>
         </div>
 
-        <div className="mt-[12%] flex flex-col h-[100vh]">
+        <div className="mt-[5%]">
           <p className="text-[24px] font-medium">Let’s set up your account</p>
 
-          <div className="input-boxes">
+          <div className="input-boxes w-[100%]">
             <div className="flex justify-between items-center w-[100%]">
-              <Input
-                type="text"
-                classname="bg-transparent py-[10%] px-[10px] w-[55%]"
-                placeholder="First Name"
-                ref={firstRef}
-                onchange={(e) => setFirstName(e.target.value)}
-              />
+              <div className="w-[49.5%]">
+                <Input
+                  type="text"
+                  classname="bg-transparent py-[10%] px-[10px]"
+                  placeholder="First Name"
+                  ref={firstRef}
+                  onchange={(e) => setFirstName(e.target.value)}
+                />
+              </div>
               {/* <div className=""></div> */}
-              <Input
-                type="text"
-                classname="bg-transparent py-[10%] px-[10px] 5-[54%]"
-                placeholder="Last Name"
-                ref={lastRef}
-                onchange={(e) => setLastName(e.target.value)}
-              />
+              <div className="w-[49.5%]">
+                <Input
+                  type="text"
+                  classname="bg-transparent py-[10%] px-[10px]"
+                  placeholder="Last Name"
+                  ref={lastRef}
+                  onchange={(e) => setLastName(e.target.value)}
+                />
+              </div>
             </div>
 
             <Input

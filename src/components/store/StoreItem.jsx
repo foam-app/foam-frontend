@@ -31,7 +31,7 @@ export default function StoreItem(props) {
     const number = state.quantity;
 
     const data = {
-      categoryId: categoryId,
+      categoryId: 2,
       quantity: 2,
     };
 

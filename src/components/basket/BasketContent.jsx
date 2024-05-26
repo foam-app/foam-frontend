@@ -1,65 +1,65 @@
 import React from "react";
 import StoreItem from "../store/StoreItem";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+
+import axios from "../../api/url";
+import { TokenContext } from "../../context/TokenProvider";
+const GET_CART = `/api/user/basket/`;
+
+import shirt from "../../../public/shirt.png";
+import BasketItem from "./BasketItem";
 
 export default function () {
-  const items = [
-    {
-      id: 1,
-      name: "Shirt",
-      image: "/shirt.png",
-      price: "N500",
-    },
-    {
-      id: 2,
-      name: "T-Shirt",
-      image: "/tshirt.png",
-      price: "N500",
-    },
-  ];
+  const { token } = useContext(TokenContext);
 
-  const items2 = [
-    {
-      id: 3,
-      name: "Polo",
-      image: "/polo.png",
-      price: "N500",
-    },
-    {
-      id: 4,
-      name: "Female Tops",
-      image: "/female-tops.png",
-      price: "N500",
-    },
-  ];
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    const getBasket = async () => {
+      try {
+        const response = await axios.get(GET_CART, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          withCredentials: true,
+        });
+        setCart(response.data.basket.items);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    getBasket();
+  }, []);
+
+  const totalCost = () => {
+    let total = 0;
+    cart.forEach((item) => {
+      total += item.category.price * item.quantity;
+    });
+    return total;
+  };
+
+  const totalPayable = () => {
+    return totalCost() + 1500;
+  };
 
   return (
     <>
       <div className="">
-        <div className="flex justify-between items-center mt-[5%]">
-          <p className="text-[18px] font-bold">Washing and Folding</p>
-          <p>6 items</p>
-        </div>
-        {items.map((item) => (
-          <StoreItem
-            key={item.id}
-            name={item.name}
-            image={item.image}
-            price={item.price}
-          />
-        ))}
-      </div>
-      <div className="">
         <div className="flex justify-between items-center mt-[8%]">
-          <p className="text-[18px] font-bold">Dry Cleaning</p>
-          <p>6 items</p>
+          {/* <p className="text-[18px] font-bold">Dry Cleaning</p> */}
+          <p className="text-[18px] font-bold">{cart.length} Items</p>
         </div>
-        {items2.map((item) => (
-          <StoreItem
+        {cart.map((item) => (
+          <BasketItem
             key={item.id}
-            name={item.name}
-            image={item.image}
-            price={item.price}
+            name={item.category.name}
+            image={shirt}
+            price={item.category.price}
+            quantity={item.quantity}
           />
         ))}
       </div>
@@ -68,15 +68,15 @@ export default function () {
         <hr />
         <div className="my-[3.5%] flex justify-between items-center text-[20px]">
           <p className="">Total Amount</p>
-          <p className="font-bold">N6,000</p>
+          <p className="font-bold tracking-wider">N{totalCost()}</p>
         </div>
         <div className="my-[3.5%] flex justify-between items-center text-[20px]">
           <p className="">Delivery Charge</p>
-          <p className="font-bold">N1,500</p>
+          <p className="font-bold tracking-wider">N1,500</p>
         </div>
         <div className="my-[3.5%]  flex justify-between items-center text-[20px]">
           <p className="">Total Payable</p>
-          <p className="font-bold">N7,500</p>
+          <p className="font-bold tracking-wider">N {totalPayable()}</p>
         </div>
       </div>
     </>
