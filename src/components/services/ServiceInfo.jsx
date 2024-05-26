@@ -18,7 +18,7 @@ export default function ServiceInfo() {
 
   return (
     <div>
-      <div className="relative onboard">
+      <div className="relative h-[100vh]">
         <Header header="Washing and Folding" />
         <div className="p-[5%] ">
           <img src={serviceInfo} alt="" className="mt-[7%]" />
