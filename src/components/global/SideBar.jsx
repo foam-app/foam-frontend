@@ -8,31 +8,31 @@ export default function SideBar() {
     {
       id: 1,
       name: "Profile",
-      image: "../../../src/assets/profile-nav.svg",
+      image: "/profile-nav.svg",
       link: "/profile",
     },
     {
       id: 2,
       name: "Services",
-      image: "../../../src/assets/services.svg",
+      image: "/services.svg",
       link: "/services",
     },
     {
       id: 3,
       name: "Billing",
-      image: "../../../src/assets/billing.svg",
+      image: "/billing.svg",
       link: "/billing",
     },
     {
       id: 4,
       name: "Settings",
-      image: "../../../src/assets/settings.svg",
+      image: "/settings.svg",
       link: "/settings",
     },
     {
       id: 5,
       name: "Help",
-      image: "../../../src/assets/help.svg",
+      image: "/help.svg",
       link: "/help",
     },
   ];
