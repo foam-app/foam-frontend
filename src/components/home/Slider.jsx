@@ -39,27 +39,54 @@ export default function Slider({ slides }) {
               //   //opacity: 0,
               //   x: -300,
               // }}
-              transition={{ duration: 0.5 }}
+              // transition={{ duration: 0.5 }}
               onAnimationComplete={() => setIsTransitioning(false)}
             >
               <img
                 src={slides[currentSlide].image}
                 alt=""
-                className="rounded-[8px] w-[100%] h-[100%]"
+                className="rounded-[8px] w-[100%] h-[130px]"
               />
+
               <div className="bg-[#00AABC40] py-[2%] rounded-[8px] absolute top-0 w-[100%] h-[100%] px-[3%] text-white">
-                <p className="pt-[5%] text-[19px] font-bold">Discount Deals</p>
-                <div className="flex justify-center items-center">
-                  <p className="text-[17px]">
-                    up to <span className="text-[24px] font-bold">40% off</span>{" "}
-                    all laundry services available!
+                <motion.div
+                  key={slides[currentSlide].id}
+                  initial={{
+                    opacity: 0,
+                    x: 100,
+                    top: 0,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    x: 0,
+                    top: 0,
+                  }}
+                  exit={{
+                    opacity: 0,
+                    x: -300,
+                    top: 0,
+                  }}
+                  transition={{ duration: 0.5 }}
+                  onAnimationComplete={() => setIsTransitioning(false)}
+                >
+                  <p className="pt-[5%] text-[19px] font-bold">
+                    {slides[currentSlide].title}
                   </p>
-                  <Link to="/home" className="pt-[3%]">
-                    <button className="text-[16px] rounded-[8px] text-center gradient-btn text-white py-[8px] px-[16px]">
-                      Claim
-                    </button>
-                  </Link>
-                </div>
+                  <div className="flex justify-center items-center">
+                    <p className="text-[17px]">
+                      {slides[currentSlide].descriptionOne}{" "}
+                      <span className="text-[24px] font-bold">
+                        {slides[currentSlide].descriptionTwo}
+                      </span>{" "}
+                      {slides[currentSlide].descriptionThree}
+                    </p>
+                    <Link to="/home" className="pt-[3%]">
+                      <button className="text-[16px] rounded-[8px] text-center gradient-btn text-white py-[8px] px-[16px]">
+                        Claim
+                      </button>
+                    </Link>
+                  </div>
+                </motion.div>
               </div>
             </motion.div>
           </div>

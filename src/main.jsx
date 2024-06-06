@@ -21,6 +21,7 @@ import Store from "./pages/store/Store";
 import AddressInfo from "./components/store/Address";
 import App from "./components/store/Payment";
 import Basket from "./pages/basket/Basket";
+import Help from "./pages/help/Help";
 
 import { TokenProvider } from "./context/TokenProvider";
 import { ProfileProvider } from "./context/ProfileContext";
@@ -97,6 +98,10 @@ const router = createBrowserRouter([
   {
     path: "/cart",
     element: <Cart />,
+  },
+  {
+    path: "/help",
+    element: <Help />,
   },
 ]);
 

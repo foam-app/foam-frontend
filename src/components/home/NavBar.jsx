@@ -60,7 +60,7 @@ export default function NavBar() {
             alt=""
             className="w-[50px] h-[50px] rounded-full"
           />
-          <p className="text-[18px] ml-[10px] font-medium">
+          <p className="text-[18px] ml-[10px] font-medium capitalize">
             Hey{loaded ? `, ${user.firstName}` : `there`}
           </p>
         </div>
@@ -82,7 +82,7 @@ export default function NavBar() {
               <div className="">
                 <div className="pl-[5%] pt-[12%]">
                   <div className="flex justify-between items-center">
-                    <p className="text-[24px] font-medium">{`Hey, ${name}`}</p>
+                    <p className="text-[24px] font-medium capitalize">{`Hey, ${name}`}</p>
                     <FontAwesomeIcon
                       icon={faX}
                       className="w-[20px] h-[20px] pr-[5%]"

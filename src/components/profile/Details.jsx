@@ -1,18 +1,54 @@
 import React, { useState, useEffect, useContext } from "react";
 import Input from "../forms/Input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEyeSlash } from "@fortawesome/free-regular-svg-icons";
+import { faX } from "@fortawesome/free-solid-svg-icons";
 
 import userProfile from "../../assets/user.jfif";
 import camera from "../../assets/camera.svg";
 import { ProfileContext } from "../../context/ProfileContext";
+import { TokenContext } from "../../context/TokenProvider";
 
-const EDIT_ADDRESS = `/api/user/address`;
+import axios from "../../api/url";
+import ChangePassword from "../profile/ChangePassword";
+const GET_ADDRESS = `/api/user/address`;
 
 export default function Details() {
   const { user } = useContext(ProfileContext);
   console.log(user);
 
+  const { token } = useContext(TokenContext);
+
+  const [address, setAddress] = useState("");
+
+  useEffect(
+    () => async () => {
+      try {
+        const response = await axios.get(GET_ADDRESS, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          withCredentials: true,
+        });
+
+        setAddress(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    [token]
+  );
+
+  const [showPopup, setShowPopup] = useState(false);
+
+  const handleOpenPopup = () => {
+    setShowPopup(true);
+  };
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
   return (
     <div>
       <div className="rounded-full relative my-[3%]">
@@ -31,7 +67,8 @@ export default function Details() {
           <div className="w-[49.5%]">
             <p className="capitalize">first name</p>
             <Input
-              classname="bg-transparent py-[10%] px-[10px]"
+              type="text"
+              classname="bg-transparent py-[10%] px-[10px] capitalize"
               placeholder={`${user.firstName}`}
             />
           </div>
@@ -39,7 +76,8 @@ export default function Details() {
           <div className="w-[49.5%]">
             <p className="capitalize">last name</p>
             <Input
-              classname="bg-transparent py-[10%] px-[10px]"
+              type="text"
+              classname="bg-transparent py-[10%] px-[10px] capitalize"
               placeholder={`${user.lastName}`}
             />
           </div>
@@ -82,9 +120,14 @@ export default function Details() {
       </div>
 
       <div className="buttons mt-[10%]">
-        <button className="rounded-[8px] w-[100%] py-[12px] px-[32px] bg-[#001C1F] text-white text-[16px] font-bold">
+        <button
+          className="rounded-[8px] w-[100%] py-[12px] px-[32px] bg-[#001C1F] text-white text-[16px] font-bold"
+          onClick={handleOpenPopup}
+        >
           <p>Change Password</p>
         </button>
+
+        {showPopup && <ChangePassword />}
 
         <button className="rounded-[8px] w-[100%] mt-[3%] py-[12px] px-[32px] bg-[#001C1F] text-white text-[16px] font-bold">
           <p>Delete Account</p>

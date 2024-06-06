@@ -8,10 +8,11 @@ const config = {
 };
 
 // you can call this function anything
-const onSuccess = (reference) => {
+const onSuccess = (reference, amount) => {
   // Implementation for whatever you want to do with reference and after success call.
   // const values = { email, bought, date,  ,...reference}
   console.log(reference);
+  console.log(amount);
   // axios.post(values)
 };
 

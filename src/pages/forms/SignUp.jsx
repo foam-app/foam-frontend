@@ -46,7 +46,7 @@ export default function SignUp() {
     const data = {
       firstName: firstName,
       lastName: lastName,
-      middleName: "Middle",
+      middleName: "",
       email: email,
       phone: phone,
       password: password,
@@ -68,11 +68,11 @@ export default function SignUp() {
       const message = response.data.message;
       // history("/signup-address");
       success(message);
-      history("/login");
+      history("/signup-address");
     } catch (err) {
       setLoading(false);
-      const message = err.response.data.error;
-      failure(message);
+
+      failure(err.response.data?.error || err.response.data?.error?.message);
     }
   };
 
