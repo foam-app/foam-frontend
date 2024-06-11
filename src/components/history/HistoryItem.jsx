@@ -6,13 +6,15 @@ import { useState } from "react";
 import Ongoing from "./Ongoing";
 import Cancelled from "./Cancelled";
 import Completed from "./Completed";
+import AllOrders from "./AllOrders";
 
 export default function HistoryItem() {
   const tabs = [
     {
       id: 1,
       label: "Ongoing",
-      content: <Ongoing />,
+      // content: <Ongoing />,
+      content: <AllOrders />,
     },
     {
       id: 2,

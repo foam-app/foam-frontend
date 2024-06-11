@@ -6,6 +6,8 @@ import { faBell } from "@fortawesome/free-regular-svg-icons";
 
 import { TokenContext } from "../../context/TokenProvider";
 
+import { motion } from "framer-motion";
+
 import userimg from "../../assets/user.jfif";
 import nav from "../../assets/side-icons.png";
 import bell from "../../assets/bell.png";
@@ -77,39 +79,47 @@ export default function NavBar() {
       </div>
       {toggle ? (
         <>
-          <div className="flex absolute w-[100%] top-[-15px]">
-            <div className="bg-white w-[84%] h-[100%] z-[1000] onboard">
-              <div className="">
-                <div className="pl-[5%] pt-[12%]">
-                  <div className="flex justify-between items-center">
-                    <p className="text-[24px] font-medium capitalize">{`Hey, ${name}`}</p>
-                    <FontAwesomeIcon
-                      icon={faX}
-                      className="w-[20px] h-[20px] pr-[5%]"
-                      onClick={handleSideBar}
-                    />
+          <motion.div
+            initial={{ x: "-100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "-100%" }}
+            transition={{ duration: 0.2 }}
+            className="w-[100%] absolute top-[-15px] z-[1000]"
+          >
+            <div className="flex w-[100%] ">
+              <div className="bg-white h-[100vh] w-[84%] z-[1000] flex flex-col ">
+                <div className="">
+                  <div className="pl-[5%] pt-[12%]">
+                    <div className="flex justify-between items-center">
+                      <p className="text-[24px] font-medium capitalize">{`Hey, ${name}`}</p>
+                      <FontAwesomeIcon
+                        icon={faX}
+                        className="w-[20px] h-[20px] pr-[5%]"
+                        onClick={handleSideBar}
+                      />
+                    </div>
+                    <SideBar />
                   </div>
-                  <SideBar />
+                </div>
+
+                <div className="my-auto">
+                  <button className="ml-[5%] rounded-[8px] py-[12px] px-[32px] bg-[#001C1F] text-white text-[16px] font-bold w-[90%]">
+                    <p>
+                      Log Out{" "}
+                      <FontAwesomeIcon icon={faSignOut} className="ml-3" />
+                    </p>
+                  </button>
                 </div>
               </div>
 
-              <div className="my-auto">
-                <button className="ml-[5%] rounded-[8px] py-[12px] px-[32px] bg-[#001C1F] text-white text-[16px] font-bold w-[90%]">
-                  <p>
-                    Log Out{" "}
-                    <FontAwesomeIcon icon={faSignOut} className="ml-3" />
-                  </p>
-                </button>
+              <div
+                className="bg-[#00000048] w-[16%] top-0 h-[100vh] "
+                onClick={handleSideBar}
+              >
+                <p></p>
               </div>
             </div>
-
-            <div
-              className="bg-[#00000048] w-[16%] top-0 z-[1000]"
-              onClick={handleSideBar}
-            >
-              <p></p>
-            </div>
-          </div>
+          </motion.div>
         </>
       ) : null}
     </>

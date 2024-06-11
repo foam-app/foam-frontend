@@ -85,44 +85,48 @@ export default function () {
 
   return (
     <>
-      <div className="">
-        <div className="flex justify-between items-center mt-[8%]">
-          {/* <p className="text-[18px] font-bold">Dry Cleaning</p> */}
-          <p className="text-[18px] font-bold">{cart.length} Items</p>
+      <div className="flex flex-col h-[80vh]">
+        <div className="">
+          <div className="flex justify-between items-center mt-[8%]">
+            {/* <p className="text-[18px] font-bold">Dry Cleaning</p> */}
+            <p className="text-[18px] font-bold">{cart.length} Items</p>
+          </div>
+          {cart.map((item) => (
+            <BasketItem
+              key={item.id}
+              name={item.category.name}
+              image={shirt}
+              price={item.category.price}
+              quantity={item.quantity}
+            />
+          ))}
         </div>
-        {cart.map((item) => (
-          <BasketItem
-            key={item.id}
-            name={item.category.name}
-            image={shirt}
-            price={item.category.price}
-            quantity={item.quantity}
-          />
-        ))}
-      </div>
 
-      <div className="payments my-[6%]">
-        <hr />
-        <div className="my-[3.5%] flex justify-between items-center text-[20px]">
-          <p className="">Total Amount</p>
-          <p className="font-bold tracking-wider">N{totalCost()}</p>
-        </div>
-        <div className="my-[3.5%] flex justify-between items-center text-[20px]">
-          <p className="">Delivery Charge</p>
-          <p className="font-bold tracking-wider">N1,500</p>
-        </div>
-        <div className="my-[3.5%]  flex justify-between items-center text-[20px]">
-          <p className="">Total Payable</p>
-          <p className="font-bold tracking-wider">N {totalPayable()}</p>
+        <div className="mt-auto">
+          <div className="payments my-[6%]">
+            <hr />
+            <div className="my-[3.5%] flex justify-between items-center text-[20px]">
+              <p className="">Total Amount</p>
+              <p className="font-bold tracking-wider">N{totalCost()}</p>
+            </div>
+            <div className="my-[3.5%] flex justify-between items-center text-[20px]">
+              <p className="">Delivery Charge</p>
+              <p className="font-bold tracking-wider">N1,500</p>
+            </div>
+            <div className="my-[3.5%]  flex justify-between items-center text-[20px]">
+              <p className="">Total Payable</p>
+              <p className="font-bold tracking-wider">N {totalPayable()}</p>
+            </div>
+          </div>
+
+          <button
+            className="w-[100%] rounded-[8px] py-[12px] px-[32px] bg-[#001C1F] text-white text-[18px] font-bold"
+            onClick={handleNavigate}
+          >
+            <p>Proceed</p>
+          </button>
         </div>
       </div>
-
-      <button
-        className="w-[100%] rounded-[8px] py-[12px] px-[32px] bg-[#001C1F] text-white text-[18px] font-bold"
-        onClick={handleNavigate}
-      >
-        <p>Proceed</p>
-      </button>
     </>
   );
 }

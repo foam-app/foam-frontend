@@ -6,35 +6,66 @@ import { useNavigate } from "react-router-dom";
 
 import { usePaystackPayment } from "react-paystack";
 
+import axios from "../../api/url";
+import { TokenContext } from "../../context/TokenProvider";
+import { useContext } from "react";
+const CREATE_ORDER = `/api/order/create`;
+
 const config = {
   reference: new Date().getTime().toString(), //pass uuid as reference
   email: "user@example.com",
-  amount: 6000, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
+  amount: 6000,
   publicKey: "pk_test_c8dc32b8ae474a888a8fd4c6a9e612fef4c5efb7",
 };
 
-// you can call this function anything
-const onSuccess = (reference) => {
-  // Implementation for whatever you want to do with reference and after success call.
-  // const values = { email, bought, date,  ,...reference}
-  console.log(reference);
-  // axios.post(values)
+const onSuccess = (reference, token) => {
+  // console.log(reference);
+
+  const total = config.amount;
 };
 
-// you can call this function anything
+const createOrder = async (config, token) => {
+  console.log(config, token);
+  const order = {
+    totalPrice: config.amount,
+    paymentType: "ONLINE",
+    paymentId: `${config.reference}`,
+    paymentStatus: "SUCCEEDED",
+  };
+
+  try {
+    const response = await axios.post(CREATE_ORDER, order, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      withCredentials: true,
+    });
+    console.log(response.data);
+  } catch (err) {
+    console.log(err.response);
+  }
+};
 const onClose = () => {
-  // implementation for  whatever you want to do when the Paystack dialog closed.
   console.log("closed");
 };
 
 const PaystackHookExample = () => {
   const initializePayment = usePaystackPayment(config);
+  const { token } = useContext(TokenContext);
+
   return (
     <div>
       <button
         className="w-[100%] rounded-[8px] py-[5%] px-[32px] bg-[#001C1F] text-white text-[16px] font-bold"
         onClick={() => {
-          initializePayment({ onSuccess, onClose });
+          initializePayment({
+            onSuccess: (token) => {
+              createOrder(config, token);
+            },
+            onClose,
+          });
         }}
       >
         Make Payment
@@ -48,17 +79,12 @@ export default function AddressInfo() {
   const handleNavigatePayment = () => {
     navigate("/payment");
   };
+
   return (
     <div className="relative onboard">
       <Header header="Pickup Address" />
       <AddressContainer />
       <div className="px-[4%] my-auto">
-        {/* <button
-          className="w-[100%] rounded-[8px] py-[5%] px-[32px] bg-[#001C1F] text-white text-[16px] font-bold"
-          onClick={handleNavigatePayment}
-        >
-          <p>Make Payment</p>
-        </button> */}
         <PaystackHookExample />
       </div>
 

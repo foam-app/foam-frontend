@@ -37,7 +37,7 @@ const PaystackHookExample = () => {
   );
 };
 
-function App() {
+function App({ amount, id }) {
   return (
     <div className="App">
       <header className="App-header">

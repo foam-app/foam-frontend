@@ -10,7 +10,7 @@ export default function ItemDetails(props) {
             <p className="text-[14px] font-medium">{props.time}</p>
           </div>
           <div className="text-[#00AABC]">
-            <p>Order Deatils</p>
+            <p>Order Details</p>
           </div>
         </div>
       </div>
