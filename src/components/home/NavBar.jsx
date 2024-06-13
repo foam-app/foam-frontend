@@ -15,6 +15,7 @@ import SideBar from "../global/SideBar";
 
 import axios from "../../api/url";
 import { ProfileContext } from "../../context/ProfileContext";
+import { Link } from "react-router-dom";
 const GET_USER = `/api/user/profile`;
 
 export default function NavBar() {
@@ -57,21 +58,27 @@ export default function NavBar() {
     <>
       <div className="relative flex justify-between items-center my-[3.5%] p-[5%]">
         <div className="flex justify-center items-center">
-          <img
-            src={userimg}
-            alt=""
-            className="w-[50px] h-[50px] rounded-full"
-          />
+          <Link to="/profile">
+            <img
+              src={userimg}
+              alt=""
+              className="w-[50px] h-[50px] rounded-full"
+            />
+          </Link>
           <p className="text-[18px] ml-[10px] font-medium capitalize">
             Hey{loaded ? `, ${user.firstName}` : `there`}
           </p>
         </div>
         <div className="flex text-[21px] font-light">
-          {/* <FontAwesomeIcon icon={faBell} className="mx-[1.5%]" /> */}
-          <img src={bell} alt="" />
+          <FontAwesomeIcon icon={faBell} className="mx-[1.5%]" />
+          {/* <img src={bell} alt="" /> */}
           <p className="mx-[5px]"></p>
-          {/* <FontAwesomeIcon icon={faBars} className="mx-[1.5%]" /> */}
-          <img src={nav} alt="" onClick={handleSideBar} />
+          <FontAwesomeIcon
+            icon={faBars}
+            className="mx-[1.5%]"
+            onClick={handleSideBar}
+          />
+          {/* <img src={nav} alt="" onClick={handleSideBar} /> */}
 
           {/* <img src={bell} alt="" />
           <img src={nav} alt="" /> */}

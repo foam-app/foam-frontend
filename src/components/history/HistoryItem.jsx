@@ -36,7 +36,7 @@ export default function HistoryItem() {
 
   return (
     <div className="relative">
-      <Header header="History" />
+      <Header header="Orders" />
       <div className="p-[5%] my-[3.5%]">
         <div className="w-[100%] bg-[#E4E4E4] p-[2.3%] rounded-[4px] flex justify-between items-center">
           {tabs.map((tab) => (
