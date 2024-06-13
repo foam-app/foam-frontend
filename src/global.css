@@ -40,8 +40,18 @@ body::-webkit-scrollbar {
   white-space: nowrap;
 }
 
-.products::-webkit-scrollbar {
+.products::-webkit-scrollbar,
+.plans::-webkit-scrollbar {
   display: none;
+}
+
+.plans {
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+  gap: 15px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
 }
 
 .prompt-banner {
@@ -128,4 +138,18 @@ input {
   text-transform: none;
   /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     text-align: center; */
+}
+
+.bills {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.bill-btn {
+  border: 1px solid #001c1f;
+  padding: 10px 24px;
+}
+
+.plan {
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 }

@@ -19,7 +19,7 @@ export default function SideBar() {
     },
     {
       id: 3,
-      name: "Billing",
+      name: "Plans",
       image: "/billing.svg",
       link: "/billing",
     },

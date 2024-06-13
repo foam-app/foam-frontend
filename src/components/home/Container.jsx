@@ -7,6 +7,7 @@ import Products from "./Products";
 import BottomNav from "../global/BottomNav";
 
 import { usePreloadImages } from "../onboarding/Hero";
+import Subscriptions from "./Subscriptions";
 
 export default function Container() {
   const slides = [
@@ -43,12 +44,14 @@ export default function Container() {
     <>
       <div className="relative">
         <NavBar />
+
         <div className="p-[5%]">
           <Button />
 
           <Slider slides={slides} />
           <Services />
           <Products />
+          <Subscriptions />
         </div>
         <BottomNav />
       </div>

@@ -77,6 +77,7 @@ export default function NavBar() {
           <img src={nav} alt="" /> */}
         </div>
       </div>
+
       {toggle ? (
         <>
           <motion.div
@@ -86,7 +87,7 @@ export default function NavBar() {
             transition={{ duration: 0.2 }}
             className="w-[100%] absolute top-[-15px] z-[1000]"
           >
-            <div className="flex w-[100%] ">
+            <div className="fixed flex w-[100%] ">
               <div className="bg-white h-[100vh] w-[84%] z-[1000] flex flex-col ">
                 <div className="">
                   <div className="pl-[5%] pt-[12%]">

@@ -63,14 +63,14 @@ export default function BottomNav() {
             <div className="flex justify-center items-center">
               <img src={historyActive} alt="" className="w-[20px] h-[20px]" />
             </div>
-            <p className="text-[#001C1F] text-center">History</p>
+            <p className="text-[#001C1F] text-center">Orders</p>
           </Link>
         ) : (
           <Link to="/history">
             <div className="flex justify-center items-center">
               <img src={history} alt="" className="w-[20px] h-[20px]" />
             </div>
-            <p className="text-center">History</p>
+            <p className="text-center">Orders</p>
           </Link>
         )}
         {basketBool ? (

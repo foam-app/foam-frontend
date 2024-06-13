@@ -29,6 +29,7 @@ import History from "./pages/history/History";
 import ChangePassword from "./pages/forms/ChangePassword";
 import Cart from "./components/store/sampleCart";
 import { OTPProvider } from "./context/OTPContext";
+import Billing from "./pages/billing/Billing";
 
 const router = createBrowserRouter([
   {
@@ -102,6 +103,10 @@ const router = createBrowserRouter([
   {
     path: "/help",
     element: <Help />,
+  },
+  {
+    path: "/billing",
+    element: <Billing />,
   },
 ]);
 
