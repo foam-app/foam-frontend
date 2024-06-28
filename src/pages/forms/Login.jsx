@@ -1,4 +1,8 @@
-import { faChevronLeft, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronLeft,
+  faEyeSlash,
+  faEye,
+} from "@fortawesome/free-solid-svg-icons";
 import React, { useContext, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import GradientBtn from "../../components/global/GradientBtn";
@@ -14,6 +18,10 @@ import { success, failure } from "../../classes/notify";
 
 import loader from "../../assets/loader.gif";
 const LOGIN_URL = `/api/auth/login`;
+
+import { InputText } from "primereact/inputtext";
+
+import { Password } from "primereact/password";
 
 export default function Login() {
   const { setToken, initToken } = useContext(TokenContext);
@@ -33,11 +41,15 @@ export default function Login() {
 
   const [isPasswordVisible, setIsPasswordVisible] = useState("password");
 
+  const [toggleIcon, setToggleIcon] = useState(faEyeSlash);
+
   const togglePassword = () => {
     if (isPasswordVisible === "password") {
       setIsPasswordVisible("text");
+      setToggleIcon(faEye);
     } else if (isPasswordVisible === "text") {
       setIsPasswordVisible("password");
+      setToggleIcon(faEyeSlash);
     }
   };
 
@@ -91,31 +103,30 @@ export default function Login() {
         <div className="mt-[5%]">
           <p className="text-[24px] font-medium">Log In</p>
 
-          <div className="mt-[5%] input-boxes">
-            <Input
-              type="text"
-              classname="bg-transparent w-[100%] py-[5%] pl-[5px]"
-              placeholder="Email or Phone Number"
-              ref={emailRef}
-              onchange={(e) => setEmail(e.target.value)}
-            />
-            <div className="my-[4%]"></div>
-
-            <div className="mr-[2px] flex justify-between items-center bg-[#E4E4E4] text-[14px] my-[3%] text-[#000000CC] rounded-[10px]">
-              <Input
-                type={isPasswordVisible}
-                classname="bg-transparent w-[100%] py-[5%] pl-[10px]"
-                placeholder="Enter Password"
-                ref={passRef}
-                onchange={(e) => setPassword(e.target.value)}
+          <div className="mt-[5%]">
+            <div className="">
+              <InputText
+                id="email"
+                aria-describedby="username-help"
+                className="flex bg-[#E4E4E4] text-[16px] my-[3%] text-[#000000CC] rounded-[10px] w-[100%]
+                font-[DM Sans]"
+                value={email}
+                ref={emailRef}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter Email"
               />
+            </div>
 
-              <div
-                className="flex justify-between items-center pt-[%] pr-[5%]"
-                onClick={togglePassword}
-              >
-                <FontAwesomeIcon icon={faEyeSlash} className="" />
-              </div>
+            <div className="w-[100%]">
+              <Password
+                value={password}
+                ref={passRef}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter Password"
+                feedback={false}
+                toggleMask
+                className="flex bg-[#E4E4E4] text-[16px] my-[3%] text-[#000000CC] rounded-[10px] w-[100%]"
+              />
             </div>
 
             <div className="my-[4%]"></div>

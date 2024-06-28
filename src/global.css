@@ -73,18 +73,14 @@ body::-webkit-scrollbar {
   font-size: 15px;
   height: 50px;
 }
-.Pending {
-  border: 2px solid #dfbb00;
+.PENDING {
   color: #dfbb00;
-  padding: 6px 20px;
-  width: 123px;
-  border-radius: 50px;
   text-align: center;
-  font-size: 16px;
+  font-size: 19px;
   font-weight: 700;
 }
 
-.Declined {
+.DECLINED {
   border: 2px solid #a60001;
   color: #a60001;
   padding: 6px 20px;
@@ -94,7 +90,7 @@ body::-webkit-scrollbar {
   font-size: 16px;
   font-weight: 700;
 }
-.Complete {
+.COMPLETED {
   border: 2px solid #0da000;
   color: #0da000;
   padding: 6px 20px;
@@ -109,9 +105,9 @@ body::-webkit-scrollbar {
   overflow-y: hidden;
 }
 
-input {
+/* input {
   outline: none;
-}
+} */
 
 .custom-popup {
   position: fixed;
@@ -152,4 +148,25 @@ input {
 .plan {
   box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
     rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+input {
+  outline: none;
+}
+
+.p-password .p-input-icon-right .pi-eye,
+.p-password .p-input-icon-right .pi-eye-slash {
+  margin-right: 10px;
+}
+
+.p-password {
+  position: relative;
+  width: 100%;
+}
+
+.p-password input {
+  width: 100%;
+  padding-right: 9rem; /* Add padding to accommodate the eye icon */
+  background-color: #e4e4e4; /* Light gray background */
+  border: none; /* Optional: Border color */
 }

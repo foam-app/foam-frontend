@@ -57,7 +57,7 @@ export default function Address() {
       // history("/pin");
       history("/login");
     } catch (err) {
-      failure(err.response.data.message);
+      failure(err.response.data.error.message || err.response.data.error);
       // console.log(err.response.data);
     }
   };

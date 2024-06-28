@@ -4,11 +4,18 @@ import ItemDetails from "../history/ItemDetails";
 import { useContext, useState, useEffect } from "react";
 import { TokenContext } from "../../context/TokenProvider";
 
+import { IDContext } from "../../context/IDProvider";
+import { useNavigate } from "react-router-dom";
+
 import axios from "../../api/url";
 const GET_ORDERS = `/api/order/`;
 export default function AllOrders() {
   const { token } = useContext(TokenContext);
   const [data, setData] = useState([]);
+
+  const { setID } = useContext(IDContext);
+
+  const history = useNavigate();
 
   useEffect(() => {
     const getOrders = async () => {
@@ -22,6 +29,7 @@ export default function AllOrders() {
           withCredentials: true,
         });
         setData(response.data.orders);
+        console.log(response.data.orders);
       } catch (err) {
         console.log(err.response);
       }
@@ -97,21 +105,30 @@ export default function AllOrders() {
       hourNumber -= 12;
     }
 
+    hourNumber = hourNumber + 1;
+
     // Return the formatted time string
     return `${hourNumber}:${
       minuteNumber < 10 ? "0" : ""
     }${minuteNumber} ${suffix}`;
   };
 
+  const getId = (id) => {
+    setID(id);
+    history("/order-details");
+  };
+
   return (
     <div>
       <div className="">
         {data.map((item) => (
-          <ItemDetails
-            key={item.id}
-            date={formatDate(item.createdAt)}
-            time={formatTime(item.createdAt)}
-          />
+          <div className="" onClick={() => getId(item.id)}>
+            <ItemDetails
+              key={item.id}
+              date={formatDate(item.createdAt)}
+              time={formatTime(item.createdAt)}
+            />
+          </div>
         ))}
       </div>
     </div>

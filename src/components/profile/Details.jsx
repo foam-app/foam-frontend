@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import Input from "../forms/Input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
@@ -10,6 +10,11 @@ import { TokenContext } from "../../context/TokenProvider";
 
 import axios from "../../api/url";
 import ChangePassword from "../profile/ChangePassword";
+
+import { Dropdown } from "primereact/dropdown";
+import { faAdd, faMinus } from "@fortawesome/free-solid-svg-icons";
+import EditAddress from "./EditAddress";
+
 const GET_ADDRESS = `/api/user/address`;
 
 export default function Details() {
@@ -18,7 +23,7 @@ export default function Details() {
 
   const { token } = useContext(TokenContext);
 
-  const [address, setAddress] = useState("");
+  const [address, setAddress] = useState([]);
 
   useEffect(
     () => async () => {
@@ -32,7 +37,7 @@ export default function Details() {
           withCredentials: true,
         });
 
-        setAddress(response.data);
+        setAddress(response.data.address);
       } catch (err) {
         console.log(err);
       }
@@ -49,6 +54,20 @@ export default function Details() {
   const handleClosePopup = () => {
     setShowPopup(false);
   };
+
+  const [toggle, setToggle] = useState("hidden");
+  const [toggleIcon, setToggleIcon] = useState(faAdd);
+
+  const handleToggle = () => {
+    if (toggle === "hidden") {
+      setToggle("block");
+      setToggleIcon(faMinus);
+    } else {
+      setToggle("hidden");
+      setToggleIcon(faAdd);
+    }
+  };
+
   return (
     <div>
       <div className="rounded-full relative my-[3%]">
@@ -98,25 +117,28 @@ export default function Details() {
 
         <div className="my-[4%]"></div>
 
-        <p className="capitalize">Home (Address 1)</p>
-        <Input
-          classname="bg-transparent w-[100%] py-[5%] pl-[10px]"
-          placeholder="3 Smith Ave Odili Rd"
-        />
-        <div className="my-[4%]"></div>
+        <div className="flex justify-between items-center">
+          <p>Address</p>
+          <FontAwesomeIcon
+            icon={toggleIcon}
+            className="bg-[#001C1F] text-white p-[1.5%] rounded"
+            onClick={handleToggle}
+          />
+        </div>
+        {address.map((address) => (
+          <>
+            <Input
+              classname="bg-transparent w-[100%] py-[5%] pl-[10px]"
+              placeholder={`${address.street}, ${address.city}`}
+            />
+          </>
+        ))}
 
-        <p className="capitalize">School (Address 2)</p>
-        <Input
-          classname="bg-transparent w-[100%] py-[5%] pl-[10px]"
-          placeholder="Arena Uniport Choba"
-        />
+        <div className={toggle}>
+          <EditAddress />
+        </div>
 
         <div className="my-[4%]"></div>
-        <p className="capitalize">office (Address 2)</p>
-        <Input
-          classname="bg-transparent w-[100%] py-[5%] pl-[10px]"
-          placeholder="Arena Uniport Choba"
-        />
       </div>
 
       <div className="buttons mt-[10%]">

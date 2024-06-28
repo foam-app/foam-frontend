@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function ItemDetails(props) {
   return (
@@ -9,9 +10,11 @@ export default function ItemDetails(props) {
             <p className="text-[18px] font-medium">{props.date}</p>
             <p className="text-[14px] font-medium">{props.time}</p>
           </div>
-          <div className="text-[#00AABC]">
-            <p>Order Details</p>
-          </div>
+          <Link to="">
+            <div className="text-[#00AABC]">
+              <p>Order Details</p>
+            </div>
+          </Link>
         </div>
       </div>
       <hr />

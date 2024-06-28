@@ -3,6 +3,10 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import "./global.css";
 
+import "primereact/resources/themes/lara-light-cyan/theme.css";
+
+import "primereact/resources/primereact.min.css";
+
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 
@@ -30,6 +34,11 @@ import ChangePassword from "./pages/forms/ChangePassword";
 import Cart from "./components/store/sampleCart";
 import { OTPProvider } from "./context/OTPContext";
 import Billing from "./pages/billing/Billing";
+import OrderDetails from "./components/history/OrderDetails";
+
+import { PrimeReactProvider, PrimeReactContext } from "primereact/api";
+
+import { IDProvider } from "./context/IDProvider";
 
 const router = createBrowserRouter([
   {
@@ -108,6 +117,10 @@ const router = createBrowserRouter([
     path: "/billing",
     element: <Billing />,
   },
+  {
+    path: "/order-details",
+    element: <OrderDetails />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -116,7 +129,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <TokenProvider>
       <ProfileProvider>
         <OTPProvider>
-          <RouterProvider router={router} />
+          <PrimeReactProvider>
+            <IDProvider>
+              <RouterProvider router={router} />
+            </IDProvider>
+          </PrimeReactProvider>
         </OTPProvider>
       </ProfileProvider>
     </TokenProvider>

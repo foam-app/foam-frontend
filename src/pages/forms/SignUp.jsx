@@ -12,7 +12,13 @@ import google from "../../assets/apple.svg";
 import axios from "../../api/url";
 import { success, failure } from "../../classes/notify";
 
+import { Password } from "primereact/password";
+import { Divider } from "primereact/divider";
+import { InputText } from "primereact/inputtext";
+import { InputNumber } from "primereact/inputnumber";
+
 import loader from "../../assets/loader.gif";
+import YourComponent from "./GoogleLogin";
 const SIGNUP_URL = `/api/auth/register`;
 
 export default function SignUp() {
@@ -36,6 +42,19 @@ export default function SignUp() {
   const emailRef = useRef();
   const phoneRef = useRef();
   const passwordRef = useRef();
+
+  const header = <div className="font-bold mb-3"></div>;
+  const footer = (
+    <>
+      <Divider />
+      {/* <p className="mt-2">Suggestions</p> */}
+      <ul className="pl-2 ml-2 mt-0 line-height-3">
+        <li>At least one lowercase</li>
+        <li>At least one uppercase</li>
+        <li>Minimum 8 characters</li>
+      </ul>
+    </>
+  );
 
   const handleSubmit = async (e) => {
     // history("/signup-address");
@@ -101,46 +120,66 @@ export default function SignUp() {
 
           <div className="input-boxes w-[100%]">
             <div className="flex justify-between items-center w-[100%]">
-              <div className="w-[49.5%]">
-                <Input
-                  type="text"
-                  classname="bg-transparent py-[10%] px-[10px]"
-                  placeholder="First Name"
-                  ref={firstRef}
-                  onchange={(e) => setFirstName(e.target.value)}
-                />
-              </div>
-              {/* <div className=""></div> */}
-              <div className="w-[49.5%]">
-                <Input
-                  type="text"
-                  classname="bg-transparent py-[10%] px-[10px]"
-                  placeholder="Last Name"
-                  ref={lastRef}
-                  onchange={(e) => setLastName(e.target.value)}
-                />
-              </div>
+              <InputText
+                id="email"
+                aria-describedby="username-help"
+                className="flex bg-[#E4E4E4] text-[16px] my-[3%] text-[#000000CC] rounded-[10px] w-[49.5%]
+                font-[DM Sans]"
+                value={firstName}
+                ref={firstRef}
+                onChange={(e) => setFirstName(e.target.value)}
+                placeholder="FirstName"
+              />
+              <InputText
+                id="email"
+                aria-describedby="username-help"
+                className="flex bg-[#E4E4E4] text-[16px] my-[3%] text-[#000000CC] rounded-[10px] w-[49.5%]
+                font-[DM Sans]"
+                value={lastName}
+                ref={lastRef}
+                onChange={(e) => setLastName(e.target.value)}
+                placeholder="LastName"
+              />
             </div>
 
-            <Input
-              type="text"
-              classname="bg-transparent w-[100%] py-[5%] pl-[5px]"
-              placeholder="Phone Number"
+            <InputText
+              keyfilter="int"
+              placeholder="Enter Phone Number"
+              onChange={(e) => setPhone(e.target.value)}
               ref={phoneRef}
-              onchange={(e) => setPhone(e.target.value)}
-            />
-            <div className="my-[4%]"></div>
-            <Input
-              type="text"
-              classname="bg-transparent w-[100%] py-[5%] pl-[10px]"
-              placeholder="Email Address"
-              ref={emailRef}
-              onchange={(e) => setEmail(e.target.value)}
+              value={phone}
+              className="flex bg-[#E4E4E4] text-[16px] my-[3%] text-[#000000CC] rounded-[10px] w-[100%]
+                font-[DM Sans]"
             />
 
             <div className="my-[4%]"></div>
+            <div className="">
+              <InputText
+                id="email"
+                aria-describedby="username-help"
+                className="flex bg-[#E4E4E4] text-[16px] my-[3%] text-[#000000CC] rounded-[10px] w-[100%]
+                font-[DM Sans]"
+                value={email}
+                ref={emailRef}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter Email"
+              />
+            </div>
 
-            <div className="mr-[2px] flex justify-between items-center bg-[#E4E4E4] text-[14px] my-[3%] text-[#000000CC] rounded-[10px]">
+            <div className="w-[100%]">
+              <Password
+                value={password}
+                ref={passwordRef}
+                onChange={(e) => setPassword(e.target.value)}
+                header={header}
+                footer={footer}
+                placeholder="Create Password"
+                toggleMask
+                className="flex bg-[#E4E4E4] text-[16px] my-[3%] text-[#000000CC] rounded-[10px] w-[100%]"
+              />
+            </div>
+
+            {/* <div className="mr-[2px] flex justify-between items-center bg-[#E4E4E4] text-[14px] my-[3%] text-[#000000CC] rounded-[10px]">
               <Input
                 type={isPasswordVisible}
                 classname="bg-transparent w-[100%] py-[5%] pl-[10px]"
@@ -155,7 +194,7 @@ export default function SignUp() {
               >
                 <FontAwesomeIcon icon={faEyeSlash} className="" />
               </div>
-            </div>
+            </div> */}
 
             {/* <div className="my-[4%]"></div>
             <div className="mr-[2px] flex bg-[#E4E4E4] text-[14px] my-[3%] text-[#000000CC] rounded-[10px]">
@@ -213,10 +252,7 @@ export default function SignUp() {
             )}
 
             <p className="my-[3.5%] text-center uppercase">or</p>
-            <div className="text-center register-input rounded-md">
-              <img src={google} className=" side-bar-text inline mr-3" />
-              <p className="inline">Continue with Google</p>
-            </div>
+            <YourComponent />
             <div className="mt-[2.5%] text-center register-input rounded-md m">
               <img src={apple} className=" side-bar-text mr-3 inline" />
               <p className="inline">Continue with Apple</p>
